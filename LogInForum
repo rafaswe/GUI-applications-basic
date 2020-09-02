@@ -1,0 +1,116 @@
+
+package anisulgui;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class LogInFrame extends JFrame{
+    private ImageIcon img;
+    private Container c;
+    private JTextField jt;
+    private JButton b1,b2,b3;
+    private JPasswordField jp;
+    private JLabel l1,l2;
+    private Font f;
+    private Cursor cr;
+     LogInFrame(){
+         cr=new Cursor(Cursor.HAND_CURSOR);
+         img=new ImageIcon(getClass().getResource("images.png"));
+         this.setIconImage(img.getImage());
+         f=new Font("Arial",Font.BOLD,18);
+         c=this.getContentPane();
+         c.setBackground(Color.GRAY);
+         c.setLayout(null);
+           l1=new JLabel();
+        l2=new JLabel();
+        l1.setBounds(10, 50,100,40);
+        l1.setText("Name");
+        l1.setForeground(Color.WHITE);
+        l1.setOpaque(true);
+        l1.setBackground(Color.BLACK);
+        l1.setFont(f);
+        c.add(l1);
+        l2.setBounds(10,100,100,40);
+        l2.setText("Password");
+        l2.setForeground(Color.WHITE);
+        l2.setOpaque(true);
+        l2.setBackground(Color.BLACK);
+        l2.setFont(f);
+        c.add(l2);
+        jt=new JTextField();
+        jt.setBounds(115, 50, 200, 40);
+        jt.setForeground(Color.WHITE);
+        jt.setBackground(Color.BLACK);
+        jt.setCursor(cr);
+        jt.setFont(f);
+        c.add(jt);
+        jp=new JPasswordField();
+        jp.setBounds(115,100, 200, 40);
+        jp.setForeground(Color.WHITE);
+        jp.setBackground(Color.BLACK);
+        jp.setCursor(cr);
+        jp.setEchoChar('R');
+        jp.setFont(f);
+        c.add(jp);
+        
+        b1=new JButton("Log in");
+        b2=new JButton("Cancel");
+        b3=new JButton("Clear");
+        
+        b1.setBounds(80,170,80,30);
+        b2.setBounds(170,170,80,30);
+        b3.setBounds(270,170,80,30);
+        b1.addActionListener(new ActionListener(){
+             @Override
+             public void actionPerformed(ActionEvent ae) {
+                 if("Rafa".equals(jt.getText()) & "1234".equals(jp.getText()))
+                     JOptionPane.showMessageDialog(null, "Log in Completed.","Log in Forum",1);
+                 else
+                     JOptionPane.showMessageDialog(null, "wrong user name or password! ","Log in Forum",2);
+            jt.setText("");
+            jp.setText("");
+             }
+     });
+        b2.addActionListener(new ActionListener(){
+             @Override
+             public void actionPerformed(ActionEvent ae) {
+            JOptionPane.showMessageDialog(null, "Log in Canceled.","Log in Forum",-0);
+            jt.setText("");
+            jp.setText("");
+            System.exit(0);
+             }
+     });
+        b3.addActionListener(new ActionListener(){
+             @Override
+             public void actionPerformed(ActionEvent ae) {
+            JOptionPane.showMessageDialog(null, "Cleared","Log in Forum",-1);
+            jt.setText("");
+            jp.setText("");
+             }
+     });
+        c.add(b1);
+        c.add(b2);
+        c.add(b3);
+        
+     }
+  
+    public static void main(String[] args) {
+        LogInFrame lg=new LogInFrame();
+        lg.setBounds(100, 100, 420, 350);
+        lg.setTitle("Log In Frame");
+        lg.setVisible(true);
+        lg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        lg.setResizable(false);
+    }
+}
